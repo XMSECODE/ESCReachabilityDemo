@@ -21,8 +21,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    Reachability *r = [Reachability reachabilityWithHostName:@"www.apple.com"];
-    switch ([r currentReachabilityStatus]) {
+    Reachability *reachability = [Reachability reachabilityWithHostName:@"www.apple.com"];
+    switch ([reachability currentReachabilityStatus]) {
         case NotReachable:
             // 没有网络连接
             NSLog(@"没有网络连接");
@@ -36,7 +36,7 @@
             NSLog(@"使用WiFi网络");
             break;
     }
-    self.reachability = r;
+    self.reachability = reachability;
     [self.reachability startNotifier];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(networkHasChanged:) name:kReachabilityChangedNotification object:nil];
 }
